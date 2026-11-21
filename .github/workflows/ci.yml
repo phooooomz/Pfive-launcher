@@ -29,8 +29,9 @@ jobs:
         run: |
           yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
           "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" "ndk;27.0.12077973" "cmake;3.22.1"
+      - name: Make scripts executable
+        run: chmod +x gradlew scripts/*.sh
       - name: Lint and build
-      - run: chmod +x gradlew scripts/*.sh
         run: bash scripts/build.sh
       - uses: actions/upload-artifact@v4
         with:
