@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The owner's icon (gambar/icon.png) is the foreground layer,
+     scaled so its neon frame meets the edge of the visible mask. The
+     background matches the icon's own dark corners. The monochrome layer is
+     built from the icon's bright strokes (penguin, house and LX) for themed
+     icons on Android 13 and later. -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/lx_icon_background" />
+    <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+    <monochrome android:drawable="@mipmap/ic_launcher_monochrome" />
+</adaptive-icon>

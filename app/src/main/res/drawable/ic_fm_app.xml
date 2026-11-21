@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2026 ExsoKamabay. SPDX-License-Identifier: Apache-2.0+ -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="48dp" android:height="48dp" android:viewportWidth="48" android:viewportHeight="48">
+    <path android:pathData="M24,5.5l16,9v19l-16,9 -16,-9v-19zM8,14.5l16,9 16,-9M24,23.5v19" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round"><aapt:attr name="android:strokeColor"><gradient android:type="linear" android:startX="8" android:startY="6" android:endX="40" android:endY="42"><item android:offset="0" android:color="#FF34C77B"/><item android:offset="1" android:color="#FF4DBFD9"/></gradient></aapt:attr></path>
+</vector>

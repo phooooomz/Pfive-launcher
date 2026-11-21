@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The window shows the system wallpaper only while a workspace uses it;
+         LauncherActivity toggles FLAG_SHOW_WALLPAPER. -->
+    <style name="Theme.Lx" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:colorAccent">@color/lx_cyan</item>
+        <item name="android:colorControlNormal">@color/lx_text</item>
+        <item name="android:colorControlActivated">@color/lx_cyan</item>
+        <item name="android:textColorPrimary">@color/lx_text</item>
+        <item name="android:textColorSecondary">@color/lx_muted</item>
+        <item name="android:textColorHighlight">@color/lx_selection</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Activity</item>
+    </style>
+</resources>
