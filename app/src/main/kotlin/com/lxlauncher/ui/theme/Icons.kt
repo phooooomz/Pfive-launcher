@@ -36,7 +36,7 @@ object LxIcons {
             "tool:files" -> return vivid(R.drawable.ic_file_manager)
             "tool:settings" -> return vivid(R.drawable.vivid_app_settings)
             "action:games" -> return vivid(R.drawable.vivid_app_games)
-            "intent:gallery" -> return vivid(R.drawable.vivid_app_image)
+            "intent:gallery" -> return vivid(R.drawable.vivid_file_image)
             "tool:monitor" -> return vivid(R.drawable.vivid_app_monitor)
             "tool:notes" -> return vivid(R.drawable.vivid_app_notes)
         }
