@@ -31,7 +31,7 @@ object LxIcons {
     fun pin(entry: String, useVivid: Boolean): Choice {
         if (entry == "tool:tedit") return vivid(TEDIT)
         if (useVivid) when (entry) {
-            "action:home" -> return vivid(R.drawable.vivid_app_home)
+            "action:home" -> return vivid(R.drawable.vivid_home)
             // File Manager has its own two-tone icon (drawn for LX), not the plain Vivid folder.
             "tool:files" -> return vivid(R.drawable.ic_file_manager)
             "tool:settings" -> return vivid(R.drawable.vivid_app_settings)
