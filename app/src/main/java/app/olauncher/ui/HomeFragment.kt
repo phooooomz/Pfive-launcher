@@ -15,6 +15,8 @@ import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.content.pm.ApplicationInfo
+import app.olauncher.helper.getColorFromAttr
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
@@ -76,6 +78,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         setHomeAlignment(prefs.homeAlignment)
         initSwipeTouchListener()
         initClickListeners()
+        initStartMenu()
     }
 
     override fun onResume() {
@@ -632,6 +635,101 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
     private fun showLongPressToast() = requireContext().showToast(getString(R.string.long_press_to_select_app))
 
+    private var startAppsByCategory: Map<String, List<AppModel.App>> = emptyMap()
+    private var selectedCategory = CATEGORY_ALL
+    private var startMenuOpen = false
+
+    private fun initStartMenu() {
+        binding.startButton.setOnClickListener { toggleStartMenu() }
+        viewModel.appList.observe(viewLifecycleOwner) { list ->
+            val apps = list.orEmpty().filterIsInstance<AppModel.App>()
+            startAppsByCategory = apps.groupBy { categoryKey(it.appPackage) }
+            if (startMenuOpen) renderStartMenu()
+        }
+    }
+
+    private fun toggleStartMenu() {
+        if (startMenuOpen) closeStartMenu() else openStartMenu()
+    }
+
+    private fun openStartMenu() {
+        startMenuOpen = true
+        binding.startMenu.visibility = View.VISIBLE
+        viewModel.getAppList()
+        renderStartMenu()
+    }
+
+    private fun closeStartMenu() {
+        startMenuOpen = false
+        binding.startMenu.visibility = View.GONE
+    }
+
+    /** Maps the app's Android category (API 26+) to one of our tab keys. */
+    private fun categoryKey(packageName: String): String {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return CATEGORY_OTHER
+        val category = try {
+            requireContext().packageManager.getApplicationInfo(packageName, 0).category
+        } catch (e: Exception) {
+            return CATEGORY_OTHER
+        }
+        return when (category) {
+            ApplicationInfo.CATEGORY_GAME -> CATEGORY_GAMES
+            ApplicationInfo.CATEGORY_AUDIO, ApplicationInfo.CATEGORY_VIDEO, ApplicationInfo.CATEGORY_IMAGE -> CATEGORY_MEDIA
+            ApplicationInfo.CATEGORY_SOCIAL, ApplicationInfo.CATEGORY_NEWS -> CATEGORY_SOCIAL
+            ApplicationInfo.CATEGORY_PRODUCTIVITY, ApplicationInfo.CATEGORY_MAPS -> CATEGORY_PRODUCTIVITY
+            else -> CATEGORY_OTHER
+        }
+    }
+
+    private fun categoryLabel(key: String): Int = when (key) {
+        CATEGORY_PRODUCTIVITY -> R.string.category_productivity
+        CATEGORY_SOCIAL -> R.string.category_social
+        CATEGORY_MEDIA -> R.string.category_media
+        CATEGORY_GAMES -> R.string.category_games
+        CATEGORY_OTHER -> R.string.category_other
+        else -> R.string.category_all
+    }
+
+    private fun renderStartMenu() {
+        val context = requireContext()
+        val dp = resources.displayMetrics.density
+        val keys = listOf(CATEGORY_ALL) + CATEGORY_ORDER.filter { startAppsByCategory.containsKey(it) }
+        if (selectedCategory !in keys) selectedCategory = CATEGORY_ALL
+
+        binding.categoryTabs.removeAllViews()
+        keys.forEach { key ->
+            val selected = key == selectedCategory
+            binding.categoryTabs.addView(TextView(context).apply {
+                text = getString(categoryLabel(key))
+                setTextColor(context.getColorFromAttr(R.attr.primaryColor))
+                alpha = if (selected) 1f else 0.5f
+                setTypeface(null, if (selected) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL)
+                textSize = 16f
+                setPadding((12 * dp).toInt(), (8 * dp).toInt(), (12 * dp).toInt(), (8 * dp).toInt())
+                setOnClickListener {
+                    selectedCategory = key
+                    renderStartMenu()
+                }
+            })
+        }
+
+        val apps = if (selectedCategory == CATEGORY_ALL) startAppsByCategory.values.flatten()
+        else startAppsByCategory[selectedCategory].orEmpty()
+        binding.startApps.removeAllViews()
+        apps.sortedBy { it.appLabel.lowercase() }.forEach { app ->
+            binding.startApps.addView(TextView(context).apply {
+                text = app.appLabel
+                setTextColor(context.getColorFromAttr(R.attr.primaryColor))
+                textSize = 18f
+                setPadding((8 * dp).toInt(), (12 * dp).toInt(), (8 * dp).toInt(), (12 * dp).toInt())
+                setOnClickListener {
+                    closeStartMenu()
+                    launchApp(app.appLabel, app.appPackage, app.activityClassName, app.user.toString())
+                }
+            })
+        }
+    }
+
     private fun textOnClick(view: View) = onClick(view)
 
     private fun textOnLongClick(view: View) = onLongClick(view)
@@ -703,3 +801,11 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         _binding = null
     }
 }
+
+private const val CATEGORY_ALL = "all"
+private const val CATEGORY_PRODUCTIVITY = "productivity"
+private const val CATEGORY_SOCIAL = "social"
+private const val CATEGORY_MEDIA = "media"
+private const val CATEGORY_GAMES = "games"
+private const val CATEGORY_OTHER = "other"
+private val CATEGORY_ORDER = listOf(CATEGORY_PRODUCTIVITY, CATEGORY_SOCIAL, CATEGORY_MEDIA, CATEGORY_GAMES, CATEGORY_OTHER)
