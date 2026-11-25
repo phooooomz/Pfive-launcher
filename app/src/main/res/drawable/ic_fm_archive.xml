@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2026 ExsoKamabay. SPDX-License-Identifier: Apache-2.0+ -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="48dp" android:height="48dp" android:viewportWidth="48" android:viewportHeight="48">
-    <path android:pathData="M14,5.5h20a6.5,6.5 0 0 1 6.5,6.5v24a6.5,6.5 0 0 1 -6.5,6.5h-20a6.5,6.5 0 0 1 -6.5,-6.5v-24a6.5,6.5 0 0 1 6.5,-6.5z" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round"><aapt:attr name="android:strokeColor"><gradient android:type="linear" android:startX="8" android:startY="6" android:endX="40" android:endY="42"><item android:offset="0" android:color="#FF34C77B"/><item android:offset="1" android:color="#FF8CE28A"/></gradient></aapt:attr></path>
-    <path android:pathData="M24,6v3M21,12h6M24,15v3M21,21h6" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round"><aapt:attr name="android:strokeColor"><gradient android:type="linear" android:startX="20" android:startY="6" android:endX="28" android:endY="24"><item android:offset="0" android:color="#FFF2C94C"/><item android:offset="1" android:color="#FFF2994A"/></gradient></aapt:attr></path>
-    <path android:pathData="M21.5,25h5a1.5,1.5 0 0 1 1.5,1.5v6a4,4 0 0 1 -8,0v-6a1.5,1.5 0 0 1 1.5,-1.5zM24,30.5a2,2 0 1 0 0,4a2,2 0 0 0 0,-4z"><aapt:attr name="android:fillColor"><gradient android:type="linear" android:startX="20" android:startY="25" android:endX="28" android:endY="37"><item android:offset="0" android:color="#FFF2C94C"/><item android:offset="1" android:color="#FFF2994A"/></gradient></aapt:attr></path>
-</vector>

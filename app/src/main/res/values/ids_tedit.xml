@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2026 ExsoKamabay
-     SPDX-License-Identifier: Apache-2.0+ -->
-<resources>
-    <!-- Whether a tab's close button currently shows the unsaved dot. -->
-    <item name="tedit_tag_dirty" type="id"/>
-</resources>

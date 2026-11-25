@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2026 ExsoKamabay. SPDX-License-Identifier: Apache-2.0+ -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="48dp" android:height="48dp" android:viewportWidth="48" android:viewportHeight="48">
-    <path android:pathData="M24,5.5a18.5,18.5 0 1 1 -18.5,18.5" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round"><aapt:attr name="android:strokeColor"><gradient android:type="linear" android:startX="8" android:startY="6" android:endX="40" android:endY="42"><item android:offset="0" android:color="#FF8F7BF0"/><item android:offset="1" android:color="#FFE08CF2"/></gradient></aapt:attr></path>
-    <path android:pathData="M12.5,15a14.5,14.5 0 0 1 11.5,-5.5" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round"><aapt:attr name="android:strokeColor"><gradient android:type="linear" android:startX="8" android:startY="6" android:endX="40" android:endY="42"><item android:offset="0" android:color="#FF8F7BF0"/><item android:offset="1" android:color="#FFE08CF2"/></gradient></aapt:attr></path>
-    <path android:pathData="M24,17a7,7 0 1 1 0,14a7,7 0 0 1 0,-14z" android:strokeWidth="3" android:strokeLineCap="round" android:strokeLineJoin="round"><aapt:attr name="android:strokeColor"><gradient android:type="linear" android:startX="17" android:startY="17" android:endX="31" android:endY="31"><item android:offset="0" android:color="#FF8F7BF0"/><item android:offset="1" android:color="#FFE08CF2"/></gradient></aapt:attr></path>
-</vector>
