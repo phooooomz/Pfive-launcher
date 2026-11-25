@@ -335,6 +335,41 @@ fun getAppIconDrawable(
     }
 }
 
+/** File where the user's own font (picked from their device) is stored. Never bundled with the app. */
+fun customFontFile(context: Context): java.io.File = java.io.File(context.filesDir, "custom_font.ttf")
+
+private var cachedTypeface: android.graphics.Typeface? = null
+private var cachedTypefaceKey: String? = null
+
+fun getCustomTypeface(context: Context): android.graphics.Typeface? {
+    val file = customFontFile(context)
+    if (!file.exists()) return null
+    val key = file.absolutePath + file.lastModified()
+    if (key == cachedTypefaceKey) return cachedTypeface
+    cachedTypeface = try {
+        android.graphics.Typeface.createFromFile(file)
+    } catch (e: Exception) {
+        null
+    }
+    cachedTypefaceKey = key
+    return cachedTypeface
+}
+
+/** Applies the user's custom font to every TextView under [view], keeping each view's bold/normal style. */
+fun applyCustomFont(view: android.view.View, context: Context) {
+    val typeface = getCustomTypeface(context) ?: return
+    applyTypefaceToTree(view, typeface)
+}
+
+private fun applyTypefaceToTree(view: android.view.View, typeface: android.graphics.Typeface) {
+    if (view is android.widget.TextView) {
+        view.setTypeface(typeface, view.typeface.style)
+    }
+    if (view is android.view.ViewGroup) {
+        for (i in 0 until view.childCount) applyTypefaceToTree(view.getChildAt(i), typeface)
+    }
+}
+
 fun getChangedAppTheme(context: Context, currentAppTheme: Int): Int {
     return when (currentAppTheme) {
         AppCompatDelegate.MODE_NIGHT_YES -> AppCompatDelegate.MODE_NIGHT_NO

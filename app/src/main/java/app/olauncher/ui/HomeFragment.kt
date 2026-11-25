@@ -33,6 +33,7 @@ import app.olauncher.databinding.FragmentHomeBinding
 import app.olauncher.helper.appUsagePermissionGranted
 import app.olauncher.helper.dpToPx
 import app.olauncher.helper.expandNotificationDrawer
+import app.olauncher.helper.applyCustomFont
 import app.olauncher.helper.getAppIconDrawable
 import app.olauncher.helper.getChangedAppTheme
 import app.olauncher.helper.getUserHandleFromString
@@ -413,6 +414,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         // Get user handle for the app/shortcut
         val userHandle = getUserHandleFromString(requireContext(), userString)
         // Icon mode: text labels are hidden on the home screen
+        applyCustomFont(textView, requireContext())
 
         // If it's a shortcut, verify it still exists
         if (isShortcut) {

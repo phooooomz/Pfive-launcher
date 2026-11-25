@@ -3,10 +3,17 @@ package app.olauncher.ui
 import android.animation.Animator
 import android.animation.ValueAnimator
 import androidx.fragment.app.Fragment
+import app.olauncher.helper.applyCustomFont
 import app.olauncher.helper.isEinkDisplay
 import app.olauncher.helper.isSystemAnimationsDisabled
 
 open class BaseFragment : Fragment() {
+
+    override fun onStart() {
+        super.onStart()
+        // Apply the user's own font (if they picked one) to this screen's text
+        view?.let { applyCustomFont(it, requireContext()) }
+    }
 
     override fun onCreateAnimator(transit: Int, enter: Boolean, nextAnim: Int): Animator? {
         if (nextAnim != 0 && (requireContext().isSystemAnimationsDisabled() || requireContext().isEinkDisplay()))
