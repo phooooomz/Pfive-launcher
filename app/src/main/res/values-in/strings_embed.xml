@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aplikasi Android di dalam jendela LX (lewat LX Bridge). -->
+<resources>
+    <string name="bridge_name">LX Bridge</string>
+    <string name="bridge_connect">Sambungkan otomatis</string>
+    <string name="bridge_connect_code">Sambungkan dengan kode</string>
+    <string name="bridge_setup">Nyalakan satu izin untuk LX, dan %1$s terbuka di jendela ini. LX mengerjakan sisanya sendiri, lalu mematikan izin itu lagi.</string>
+    <string name="bridge_setup_description">Dipakai sekali untuk menyambungkan LX Bridge: LX melewati Opsi developer dan Proses debug nirkabel di Pengaturan sendiri, lalu mematikan izin ini. LX tidak melihat aplikasi lain.</string>
+    <string name="bridge_setup_detail">LX Bridge membuat aplikasi bisa terbuka di jendela LX tanpa aplikasi lain. Ketuk Sambungkan otomatis, lalu nyalakan LX Bridge di halaman aksesibilitas Android. LX sendiri yang menyalakan Opsi developer dan Proses debug nirkabel, lalu mematikan izin itu lagi. Kalau ponsel memakai kunci layar, Android bisa meminta PIN Anda satu kali. Setelah ponsel dimulai ulang, LX butuh Wi-Fi beberapa detik.</string>
+    <string name="bridge_setup_failed">LX tidak bisa menyelesaikan sambungan sendiri di ponsel ini. Pakai Sambungkan dengan kode.</string>
+    <string name="bridge_turn_on">Nyalakan LX Bridge di halaman ini.</string>
+    <string name="bridge_needs_wifi">Sambungkan Wi-Fi, dan %1$s terbuka di sini dengan sendirinya. LX Bridge butuh Wi-Fi beberapa detik setiap ponsel selesai dimulai ulang.</string>
+    <string name="bridge_open_wifi">Buka Wi-Fi</string>
+    <string name="bridge_wifi_detail">LX Bridge menyala sendiri begitu Wi-Fi tersambung. Jaringannya tidak perlu punya internet.</string>
+    <string name="bridge_wireless_kept_on">Proses debug USB mati, jadi Proses debug nirkabel tetap menyala selama LX Bridge berjalan. Aplikasi di jendela LX tertutup kalau Wi-Fi putus. Nyalakan Proses debug USB di Opsi developer supaya aplikasinya tetap terbuka.</string>
+    <string name="bridge_code_body">Nyalakan Proses debug nirkabel, ketuk Sambungkan perangkat dengan kode penyambungan, lalu ketik 6 angkanya di sini.</string>
+    <string name="bridge_code_action">Masukkan kode</string>
+    <string name="bridge_code_hint">Kode 6 angka</string>
+    <string name="bridge_pairing">Menyambungkan ke ponsel ini</string>
+    <string name="bridge_connected">Tersambung. Anda bisa kembali ke LX.</string>
+    <string name="bridge_wifi_first">Sambungkan Wi-Fi dulu: LX Bridge butuh Wi-Fi untuk memasang dirinya.</string>
+    <string name="bridge_wrong_code">Kode itu tidak cocok. Ketuk lagi Sambungkan perangkat dengan kode penyambungan, lalu ketik kode yang baru.</string>
+    <string name="bridge_no_page">LX tidak melihat halaman penyambungan. Ketuk Sambungkan perangkat dengan kode penyambungan, lalu ketik kodenya lagi.</string>
+    <string name="bridge_needs_notifications">LX meminta kode penyambungan lewat notifikasi. Izinkan notifikasi untuk LX, lalu coba lagi.</string>
+    <string name="bridge_needs_developer">Nyalakan Opsi developer dulu: ketuk Nomor bentukan tujuh kali.</string>
+    <string name="embed_always_android">Selalu buka %1$s sebagai jendela Android</string>
+    <string name="embed_display_failed">Android tidak membuat layar untuk %1$s.</string>
+    <string name="embed_display_limit">LX sudah mencapai batas aplikasi di jendela. Tutup salah satunya, lalu coba buka %1$s lagi.</string>
+    <string name="embed_lost">Layanan jendela LX berhenti, dan %1$s ikut tertutup. Aplikasinya terbuka lagi begitu layanan itu kembali.</string>
+    <string name="embed_needs_android">Menampilkan %1$s di jendela LX butuh Android 14 atau yang lebih baru.</string>
+    <string name="embed_open_android">Buka sebagai jendela Android</string>
+    <string name="embed_bridge_retrying">Menunggu LX Bridge untuk membuka %1$s. LX terus mencoba sendiri. Tepat setelah ponsel dimulai ulang, ini bisa butuh lebih lama.</string>
+    <string name="embed_opening">Membuka %1$s</string>
+    <string name="embed_route_old_android">Menampilkan aplikasi di jendela LX butuh Android 14 atau yang lebih baru, jadi %1$s dibuka di jendela Android.</string>
+    <string name="embed_service_failed">Android belum mengizinkan proses debug nirkabel di Wi-Fi ini, jadi %1$s belum bisa dibuka di sini. Izinkan saat Android bertanya, lalu coba lagi. LX juga mencoba lagi sendiri saat Wi-Fi berganti.</string>
+    <string name="embed_start_failed">%1$s tidak terbuka di dalam jendela. Sebagian aplikasi hanya mau berjalan layar penuh.</string>
+    <string name="embed_status_needs_wifi">Menunggu Wi-Fi</string>
+    <string name="embed_status_not_set_up">Belum tersambung</string>
+    <string name="embed_status_ready">Siap</string>
+    <string name="embed_status_unsupported">Perlu Android 14</string>
+    <string name="settings_always_android">Selalu di jendela Android</string>
+    <string name="settings_always_android_add">Tambah aplikasi</string>
+    <string name="settings_always_android_detail">Aplikasi di daftar ini memakai jendela Android. Game selalu dibuka layar penuh.</string>
+    <string name="settings_window_frame">Bingkai jendela aplikasi</string>
+    <string name="settings_window_frame_detail">Dengan LX, setiap aplikasi berjalan di layar tersendiri di dalam jendela LX, lengkap dengan bilah judul dan tombol LX. Fitur ini butuh Android 14 atau yang lebih baru dan LX Bridge. Game tetap dibuka layar penuh. Aplikasi yang memblokir tangkapan layar akan tampil hitam.</string>
+    <string name="window_frame_lx">LX</string>
+    <string name="window_frame_system">Android</string>
+</resources>

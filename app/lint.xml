@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2026 ExsoKamabay
+     SPDX-License-Identifier: Apache-2.0+ -->
+<lint>
+    <!-- Only Tedit has Chinese text (values-zh-rCN/strings_tedit.xml); LX's own strings stay in English there on
+         purpose. A string missing from Indonesian is still an error: its message names "in" first. -->
+    <issue id="MissingTranslation">
+        <ignore regexp="is not translated in &quot;zh&quot;" />
+    </issue>
+    <!-- For the same reason Chinese is left out of locales_config.xml: Android's per-app language list would offer
+         Chinese for the whole of LX, which has none. Tedit picks its own language in its settings. -->
+    <issue id="UnusedTranslation">
+        <ignore regexp="language .zh \(Chinese\)" />
+    </issue>
+</lint>

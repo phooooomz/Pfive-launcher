@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2026 ExsoKamabay
+     SPDX-License-Identifier: Apache-2.0+ -->
+<resources>
+    <!-- LX Bridge needs Android 14 (EmbedClient.MIN_SDK). Before that its setup service stays off, so it never
+         shows in the accessibility list or switches on Developer options for nothing. -->
+    <bool name="bridge_supported">false</bool>
+</resources>

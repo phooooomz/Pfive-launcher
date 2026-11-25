@@ -1,0 +1,145 @@
+LX-LAUNCHER
+Copyright 2026 ExsoKamabay
+
+The LX-LAUNCHER source code is licensed under the Apache License, Version 2.0,
+or (at your option) any later version of the Apache License (SPDX:
+Apache-2.0+). You may not use this source code except in compliance with one
+of those licenses. A copy of version 2.0 is in the LICENSE file, in the app
+under assets/licenses/Apache-2.0.txt, and at
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations.
+
+The application icon (icon.png and the launcher icon built from it) is part
+of LX-LAUNCHER and is covered by the same license.
+
+The APK as a whole
+
+The APK includes icons from Vivid Plasma Themes and the terminal of dracxterm,
+which are licensed under the GNU General Public License, version 3, so the
+combined work is distributed under GPL-3.0. The LX-LAUNCHER source code keeps its Apache 2.0
+license; Apache 2.0 code may be combined with GPL-3.0 work. The full GPL-3.0
+text is in the app under assets/licenses/GPL-3.0.txt and in
+third_party/vivid-icons/LICENSE.
+
+Anyone who passes on the APK must also make its corresponding source
+available under GPL-3.0 section 6. For the icons that source is the SVG files
+in third_party/vivid-icons/svg together with scripts/render-vivid-icons.py,
+which turns them into the bundled WebP images.
+
+Third-party material shipped in the application:
+
+  Vivid Plasma Themes icons (24 icons, app/src/main/res/drawable-nodpi/vivid_*.webp)
+    Copyright L4ki and the Vivid Plasma Themes contributors
+    https://github.com/L4ki/Vivid-Plasma-Themes
+    commit 598e24d41b1a040620e81e971020e32fa9480944, set Vivid-Dark-Icons
+    GNU General Public License 3.0
+    Changed: rendered from SVG to 192 px lossless WebP; nothing else.
+    Each file and its SHA-256 is listed in third_party/vivid-icons/SOURCES.txt.
+    The browser, file manager and PDF icons of the set were left out because
+    they resemble other products' logos.
+
+  dracxterm's terminal (third_party/dracxterm): the terminal engine built
+  into libxterm.so, the Kotlin classes that draw it and type into it, and the
+  prompt and sudo, su, fakeroot, whoami, id and logname scripts that Tedit
+  installs in its Debian
+    Copyright 2026 Bang Jack (dracxterm)
+    GNU General Public License 3.0
+    From dracxterm 1.1.3, commit 6ce5a43b3a6699a357d18caf9ea13ad3db349b89.
+    TerminalSession.kt and TerminalView.kt are changed for Tedit; each change
+    is listed in third_party/dracxterm/README.lx.md.
+
+  BusyBox 1.38.0 (lib/<abi>/libbusybox.so), the shell of Tedit's terminal
+  before Debian is set up
+    Copyright the BusyBox authors
+    GNU General Public License 2.0 only; the text is in the app under
+    assets/licenses/GPL-2.0.txt and in third_party/dracxterm/GPL-2.0.txt
+    The binary is the one in dracxterm 1.1.3, built by dracxterm's
+    prebuilts/busybox/build.sh from
+    https://busybox.net/downloads/busybox-1.38.0.tar.bz2 (SHA-256
+    34f9ea6ff8636f2c9241153b9114eefa9e65674a45318ae1ef95bb5f31c53bb2). That
+    archive with dracxterm's recipe and patches is its corresponding source.
+
+  Fonts in app/src/main/res/font, all under the SIL Open Font License 1.1.
+  Each license text is in the app under assets/licenses/fonts and in
+  third_party/fonts/<family>/OFL.txt. Download addresses and SHA-256 sums are
+  in third_party/fonts/SOURCES.txt.
+
+    Roboto: Copyright 2011 The Roboto Project Authors
+    Inter: Copyright 2020 The Inter Project Authors
+    Noto Sans, Noto Serif, Noto Sans Mono: Copyright 2022 The Noto Project Authors
+    Nunito Sans: Copyright 2016 The Nunito Sans Project Authors
+    JetBrains Mono: Copyright 2020 The JetBrains Mono Project Authors
+    Lato: Copyright 2010-2014 tyPoland Lukasz Dziedzic, Reserved Font Name "Lato"
+    Source Sans 3: Copyright 2010-2022 Adobe, Reserved Font Name "Source"
+    IBM Plex Sans: Copyright 2017 IBM Corp., Reserved Font Name "Plex"
+    Plus Jakarta Sans: Copyright 2020 The Plus Jakarta Sans Project Authors
+    Manrope: Copyright 2018 The Manrope Project Authors
+    Poppins: Copyright 2020 The Poppins Project Authors
+    Montserrat: Copyright 2024 The Montserrat.Git Project Authors
+    Open Sans: Copyright 2020 The Open Sans Project Authors
+    Work Sans: Copyright 2019 The Work Sans Project Authors
+    DM Sans: Copyright 2014 The DM Sans Project Authors
+    Figtree: Copyright 2022 The Figtree Project Authors
+    Red Hat Text: Copyright 2024 The Red Hat Project Authors
+    Lexend: Copyright 2018 The Lexend Project Authors,
+      Reserved Font Name "RevReading Lexend"
+    Atkinson Hyperlegible Next: Copyright 2020-2024 The Atkinson Hyperlegible
+      Next Project Authors
+    Exo 2: Copyright 2013 The Exo 2 Project Authors
+    Rubik: Copyright 2015 The Rubik Project Authors
+    Nunito: Copyright 2014 The Nunito Project Authors
+    Literata: Copyright 2017 The Literata Project Authors
+
+    The families without a Reserved Font Name were cut to static Regular and
+    Medium instances and to Latin characters with fontTools
+    (scripts/fetch-fonts.py); Poppins, published as static files, was only
+    cut to Latin characters. Lexend reserves only "RevReading Lexend", a name
+    LX does not use. Lato, Source Sans 3 and IBM Plex Sans carry Reserved Font
+    Names, so their upstream files are shipped unmodified.
+
+  Kotlin standard library
+    Copyright JetBrains s.r.o. and Kotlin Programming Language contributors
+    Apache License 2.0
+
+  LLVM libc++ (linked statically from the Android NDK)
+    Apache License 2.0 with LLVM Exceptions
+
+  Material Icons path data (vector icons in app/src/main/res/drawable)
+    Copyright Google LLC
+    Apache License 2.0
+
+  VHDP, Virtual Hardware Driver Platform (vhdp/, built into libphdp.so and
+  libvhdp-loader.so for Tedit's Linux terminal)
+    Copyright 2026 The VHDP Authors
+    Apache License 2.0
+
+  XZ Embedded (third_party/xz-embedded, built into liblxnative.so to unpack
+  Tedit's Debian image)
+    Copyright The XZ Embedded authors and contributors
+    BSD Zero Clause License (0BSD): permission to use, copy, modify and
+    distribute for any purpose with or without fee, provided as is
+
+  Debian 13 "trixie" root filesystem from proot-distro (assets/linux), for
+  Tedit's Linux terminal
+    Packaged by the Termux proot-distro project; the packages inside are
+    Debian's, each under its own licence, listed in the image under
+    /usr/share/doc/*/copyright. Many are GPL; the source of every package, at
+    the exact version in the image (see /var/lib/dpkg/status inside it), is
+    published by Debian at https://snapshot.debian.org and
+    https://sources.debian.org.
+
+Used only to build and run the test suite, not shipped:
+
+  GoogleTest 1.15.2
+    Copyright Google Inc.
+    BSD 3-Clause License
+
+Used only to prepare bundled files, not shipped:
+
+  fontTools (scripts/fetch-fonts.py), MIT License
+  Chrome headless shell from Playwright and Pillow
+    (scripts/render-vivid-icons.py), BSD 3-Clause License and MIT-CMU License

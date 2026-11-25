@@ -1,0 +1,679 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-26T00:00:00Z",
+    "component": {
+      "type": "application",
+      "name": "LX-LAUNCHER",
+      "version": "0.1.1",
+      "purl": "pkg:android/com.lxlauncher@0.1.1",
+      "licenses": [
+        {
+          "expression": "Apache-2.0+ AND GPL-3.0-only AND OFL-1.1"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "kotlin-stdlib",
+      "group": "org.jetbrains.kotlin",
+      "version": "2.1.20",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.1.20",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "libc++",
+      "version": "ndk-27.0.12077973",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0 WITH LLVM-exception"
+          }
+        }
+      ],
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "material-icons-path-data",
+      "group": "com.google",
+      "version": "unversioned",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "googletest",
+      "group": "com.google",
+      "version": "1.15.2",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:github/google/googletest@v1.15.2",
+      "scope": "excluded",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7b42b4d6ed48810c5362c265a17faebe90dc2373c885e5216439d37927f02926"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "Roboto",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6a4f671483510a474aee4e10eff2ee898149525238abefd52e30d70320f3f86a"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "dec9c79b1e7a0acaff7ece9d3c2756dd08f234773fbd7e62cc01b1c5ff18456c"
+        }
+      ],
+      "description": "res/font/roboto_regular.ttf and roboto_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Inter",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0f3df53dcef6295ea12f0b8096d41571b43aab4ae6749adecdfa55b312869486"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "0efa688aa60ac64f3710968725d90c132c25ab3e25f727867a85b145c838f408"
+        }
+      ],
+      "description": "res/font/inter_regular.ttf and inter_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Noto Sans",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0ba194668e2973d2db7862d1b3aba2a9d14894d29d227e8a7b5ec9aaf13c8936"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "0e4747669475a82cdf66e0abaa8409bcfa24309da7939d44b7d579a935831fdd"
+        }
+      ],
+      "description": "res/font/notosans_regular.ttf and notosans_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Noto Serif",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "17c549a069347015df9a773b932fe0c46c9d00aab5df54011bdeb5043b73626c"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "b702bdb2fc816823524b159256382bd94f0a8ee7eac790828f76017faa56ceb8"
+        }
+      ],
+      "description": "res/font/notoserif_regular.ttf and notoserif_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Noto Sans Mono",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b20c34c77a461de6cfcf36da88311717a88cf0176ea254da802765b9d384c552"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "8db23dd45df145a408eae3a86b0db2c579ba638c385d96fb9acecf0f9d12097d"
+        }
+      ],
+      "description": "res/font/notosansmono_regular.ttf and notosansmono_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Source Sans 3",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4644c81b86ec9caaa76b634889968ed3c4f4f52f054855933acc7c2b21e53b0f"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "a7af35c1cab5dd0b29d742f86f2edfdf83fa7ec213643e765c5c51a2dc24edbc"
+        }
+      ],
+      "description": "res/font/sourcesans3_regular.ttf and sourcesans3_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Nunito Sans",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "90b15131050a9661c47e5b595abe70777cd912de85d8c1e81117197fda39700c"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "0d0d1119fa0fd3fe7a317f2b60c6940752098dbe152465178d456ab3320ca636"
+        }
+      ],
+      "description": "res/font/nunitosans_regular.ttf and nunitosans_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Lato",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d636e4683231f931eda222d588e944d082bfd3bdba02f928bee461c0f185b251"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "d3ac182a6833e005745dd75679fbad081c0b12535df4e93ad8ed57817a31a338"
+        }
+      ],
+      "description": "res/font/lato_regular.ttf and lato_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "IBM Plex Sans",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "331c8639d7598b2cde62a911a71db195e30cb655cd6bdf2e324a7e984955f907"
+        }
+      ],
+      "description": "res/font/plexsans_regular.ttf and plexsans_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "JetBrains Mono",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "042a0ce390e2463a57619a7692eb0b47cf6bc0f30d7f38d8502b3b5e7d8a0073"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "4a51dfcff33e5184dd929ea502fdf73f3c0132f380917b1aacf0414853efa0dc"
+        }
+      ],
+      "description": "res/font/jetbrainsmono_regular.ttf and jetbrainsmono_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Plus Jakarta Sans",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "81ab2edd8a659e22db4f0e6a85a233afd4a7eb4179b944fd3166f1999b6e0b25"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "e24e5de03421fd755fa4369d05e7b9ce869d291f2bc6623497df5a0157701137"
+        }
+      ],
+      "description": "res/font/plusjakartasans_regular.ttf and plusjakartasans_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Manrope",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f76fe3f24d4b9d4a9bccd297e94ed603ca1f7e7c3c339ade2a51260f7f367e04"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "ed4a285b332ade58a1c525e07d27e043127529b0f4ee8dfbd6deeb8afc156dd2"
+        }
+      ],
+      "description": "res/font/manrope_regular.ttf and manrope_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Poppins",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7bf83ec5e39a94f71559b4682844fb546826b826ec31fa68189346aff8d7eb29"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "0d918470ac8a83e18199093355aa1947ce411bd8bdac9b1bc07daca82c57fde2"
+        }
+      ],
+      "description": "res/font/poppins_regular.ttf and poppins_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Montserrat",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9c85e90d5e4f6b7073261cad9b08d4882bcf0d99872063f3b5bc8d80589a6d69"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "4dbfa7366b7e3dcc720b197ecfa1883e09a988c2aa99674414bbb64c8cf4f50a"
+        }
+      ],
+      "description": "res/font/montserrat_regular.ttf and montserrat_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Open Sans",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f4c2cdfcd7410b1769d13254f44b89e1504b0a0e9a7a97cf735fcc0400f105c9"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "2fb68a94b15055f59728222bb1ccee2db54d16f387062911cf4bb182db0271e9"
+        }
+      ],
+      "description": "res/font/opensans_regular.ttf and opensans_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Work Sans",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "fb7b3a6002a3cdd85cedad2d8cefc7a48b1f508a0861e66408144a7b86f3c296"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "2198a172520de15ba885275e1ac1433d5d7770a7c4009046c5a0a8ccbc633be0"
+        }
+      ],
+      "description": "res/font/worksans_regular.ttf and worksans_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "DM Sans",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "26db211b213277ec21537b5d482dbeb10071cc667a60f161e4bb8a25e10bc398"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "98d33ed94bac4e687ce9cef1fa724643de02fd6245ca2ef6be2c92dcdd714660"
+        }
+      ],
+      "description": "res/font/dmsans_regular.ttf and dmsans_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Figtree",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e2945bd35166eb82785e471dda5ce43274a5c7c95c025dd133303441e0839d20"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "1a9d79b190f2ecb632b62c1ff26ecb8487689d676bf42f0d658b05d955896425"
+        }
+      ],
+      "description": "res/font/figtree_regular.ttf and figtree_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Red Hat Text",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "84083686d0306d60c1588e07bfa987ee4d07e78111d8bcf97bdb9cc95414bfd9"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "8a45d71d65fa46a7abca5349cf1a3265236337606ce8ef6b118859077b5f3b7b"
+        }
+      ],
+      "description": "res/font/redhattext_regular.ttf and redhattext_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Lexend",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4099a3a0be06cf243734d13385b994c0b8c59449bb4e6646c5780ae73b152fb0"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "ad9ac422bf9a792ea2a69eaeea40a92424c593bdd0580238cfbca50de5620c04"
+        }
+      ],
+      "description": "res/font/lexend_regular.ttf and lexend_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Atkinson Hyperlegible Next",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "48b6529abefba7a615f4c620b39a977ac4ab92c8803530664049c5767089954a"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "a117238255e6838fcd50235ae53c2c6878a6799367733f2eb401c2a173a07b2d"
+        }
+      ],
+      "description": "res/font/atkinsonnext_regular.ttf and atkinsonnext_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Exo 2",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f7b58b626f07bb9a8a94b5a102d4da4bdb498decec1bd212c1fa4d5c9e51f340"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "7436e12e678c68be7eb2460efd2baa7025e057f5461e0e39afbb48515773d8f7"
+        }
+      ],
+      "description": "res/font/exo2_regular.ttf and exo2_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Rubik",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6e34b895da19455f4e9ea6f257474dc040800b0b60058c4e866bbc48017871b7"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "e5b001f7c0ff36b170724f87bae35a6cb8834bd4dd2cbd811d4e4dc24327ac54"
+        }
+      ],
+      "description": "res/font/rubik_regular.ttf and rubik_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Nunito",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "322fa04849226708bda6a8c6112363ca51d4a82b9fd2bcc648b6a1e617ecf0f1"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "b2746e12a332b05ceeeb84fbbf09e15adaeb915a6786aecd9867f9f37a1d3165"
+        }
+      ],
+      "description": "res/font/nunito_regular.ttf and nunito_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Literata",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1415add42313138b2d59b6db6d5babb57ac01544f792978144b29d18002e8655"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "b59c03936d7941e7ce15dcca2d06c2041898a4773aec068420d432d0ad3b3c16"
+        }
+      ],
+      "description": "res/font/literata_regular.ttf and literata_medium.ttf; source in third_party/fonts/SOURCES.txt",
+      "scope": "required"
+    },
+    {
+      "type": "file",
+      "name": "Vivid Plasma Themes icons",
+      "version": "598e24d41b1a040620e81e971020e32fa9480944",
+      "licenses": [
+        {
+          "license": {
+            "id": "GPL-3.0-only"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/L4ki/Vivid-Plasma-Themes"
+        }
+      ],
+      "description": "24 icons from Vivid-Dark-Icons rendered to res/drawable-nodpi/vivid_*.webp; SVG sources in third_party/vivid-icons/svg",
+      "scope": "required"
+    }
+  ]
+}
