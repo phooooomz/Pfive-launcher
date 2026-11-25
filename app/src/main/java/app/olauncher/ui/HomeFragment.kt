@@ -531,32 +531,6 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         )
     }
 
-    private fun openSwipeRightApp() {
-        if (!prefs.swipeRightEnabled) return
-        launchAppOrShortcut(
-            appName = prefs.appNameSwipeRight,
-            packageName = prefs.appPackageSwipeRight,
-            activityClassName = prefs.appActivityClassNameRight,
-            shortcutId = prefs.shortcutIdSwipeRight,
-            isShortcut = prefs.isShortcutSwipeRight,
-            userString = prefs.appUserSwipeRight,
-            fallback = { openDialerApp(requireContext()) }
-        )
-    }
-
-    private fun openSwipeLeftApp() {
-        if (!prefs.swipeLeftEnabled) return
-        launchAppOrShortcut(
-            appName = prefs.appNameSwipeLeft,
-            packageName = prefs.appPackageSwipeLeft,
-            activityClassName = prefs.appActivityClassNameSwipeLeft,
-            shortcutId = prefs.shortcutIdSwipeLeft,
-            isShortcut = prefs.isShortcutSwipeLeft,
-            userString = prefs.appUserSwipeLeft,
-            fallback = { openCameraApp(requireContext()) }
-        )
-    }
-
     private fun showAppList(flag: Int, rename: Boolean = false, includeHiddenApps: Boolean = false) {
         viewModel.getAppList(includeHiddenApps)
         try {
@@ -664,16 +638,6 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
     private fun getSwipeGestureListener(context: Context): View.OnTouchListener {
         return object : OnSwipeTouchListener(context) {
-            override fun onSwipeLeft() {
-                super.onSwipeLeft()
-                openSwipeLeftApp()
-            }
-
-            override fun onSwipeRight() {
-                super.onSwipeRight()
-                openSwipeRightApp()
-            }
-
             override fun onSwipeUp() {
                 super.onSwipeUp()
                 showAppList(Constants.FLAG_LAUNCH_APP)
@@ -712,16 +676,6 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
     private fun getViewSwipeTouchListener(context: Context, view: View): View.OnTouchListener {
         return object : ViewSwipeTouchListener(context, view) {
-            override fun onSwipeLeft() {
-                super.onSwipeLeft()
-                openSwipeLeftApp()
-            }
-
-            override fun onSwipeRight() {
-                super.onSwipeRight()
-                openSwipeRightApp()
-            }
-
             override fun onSwipeUp() {
                 super.onSwipeUp()
                 showAppList(Constants.FLAG_LAUNCH_APP)

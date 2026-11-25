@@ -54,7 +54,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    private val showPentastic = System.currentTimeMillis() % 2 == 0L
     private var dialog: OlDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -76,7 +75,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
         binding.homeAppsNum.text = prefs.homeAppsNum.toString()
         populateProMessage()
-        populateKeyboardText()
         populateScreenTimeOnOff()
         populateLockSettings()
         // Home button for recents feature disabled
@@ -88,13 +86,10 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         populateAlignment()
         populateStatusBar()
         populateDateTime()
-        populateSwipeApps()
         populateActionHints()
         initClickListeners()
         initObservers()
 
-        if (showPentastic)
-            binding.footer.text = getText(R.string.new_app_minimal_todo_lists)
     }
 
     override fun onClick(view: View) {
@@ -105,7 +100,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.toggleLock -> toggleLockMode()
             // Home button for recents feature disabled
             // R.id.homeButtonRecents -> toggleHomeButtonRecents()
-            R.id.autoShowKeyboard -> toggleKeyboardText()
             R.id.homeAppsNum -> showHomeAppsNumMenu(view)
             R.id.dailyWallpaperUrl -> requireContext().openUrl(prefs.dailyWallpaperUrl)
             R.id.dailyWallpaper -> toggleDailyWallpaperUpdate()
@@ -116,8 +110,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.textSizeValue -> showTextSizeDialog()
             R.id.boldFont -> toggleBoldFont()
 
-            R.id.swipeLeftApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_LEFT_APP)
-            R.id.swipeRightApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_RIGHT_APP)
 
             R.id.share -> requireActivity().shareApp()
             R.id.rate -> {
@@ -128,11 +120,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.twitter -> requireContext().openUrl(Constants.URL_TWITTER_TANUJ)
             R.id.github -> requireContext().openUrl(Constants.URL_OLAUNCHER_GITHUB)
             R.id.privacy -> requireContext().openUrl(Constants.URL_OLAUNCHER_PRIVACY)
-            R.id.footer -> {
-                requireContext().openUrl(
-                    if (showPentastic) Constants.URL_PENTASTIC else Constants.URL_NTS
-                )
-            }
         }
     }
 
@@ -146,8 +133,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
             R.id.dailyWallpaper -> removeWallpaper()
             R.id.appThemeText -> showAppThemeMenu(view, showSystem = true)
-            R.id.swipeLeftApp -> toggleSwipeLeft()
-            R.id.swipeRightApp -> toggleSwipeRight()
             R.id.toggleLock -> startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
         return true
@@ -156,7 +141,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
     private fun initClickListeners() {
         binding.olauncherHiddenApps.setOnClickListener(this)
         binding.setLauncher.setOnClickListener(this)
-        binding.autoShowKeyboard.setOnClickListener(this)
         binding.toggleLock.setOnClickListener(this)
         // Home button for recents feature disabled
         // binding.homeButtonRecents.setOnClickListener(this)
@@ -167,8 +151,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.alignment.setOnClickListener(this)
         binding.statusBar.setOnClickListener(this)
         binding.dateTime.setOnClickListener(this)
-        binding.swipeLeftApp.setOnClickListener(this)
-        binding.swipeRightApp.setOnClickListener(this)
         binding.appThemeText.setOnClickListener(this)
         binding.textSizeValue.setOnClickListener(this)
         binding.boldFont.setOnClickListener(this)
@@ -178,13 +160,10 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.twitter.setOnClickListener(this)
         binding.github.setOnClickListener(this)
         binding.privacy.setOnClickListener(this)
-        binding.footer.setOnClickListener(this)
 
         binding.dailyWallpaper.setOnLongClickListener(this)
         binding.alignment.setOnLongClickListener(this)
         binding.appThemeText.setOnLongClickListener(this)
-        binding.swipeLeftApp.setOnLongClickListener(this)
-        binding.swipeRightApp.setOnLongClickListener(this)
         binding.toggleLock.setOnLongClickListener(this)
     }
 
@@ -201,9 +180,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         }
         viewModel.homeAppAlignment.observe(viewLifecycleOwner) {
             populateAlignment()
-        }
-        viewModel.updateSwipeApps.observe(viewLifecycleOwner) {
-            populateSwipeApps()
         }
     }
 
@@ -296,27 +272,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         )
     }
 
-    private fun toggleSwipeLeft() {
-        prefs.swipeLeftEnabled = !prefs.swipeLeftEnabled
-        if (prefs.swipeLeftEnabled) {
-            binding.swipeLeftApp.setTextColor(requireContext().getColorFromAttr(R.attr.primaryColor))
-            requireContext().showToast(getString(R.string.swipe_left_app_enabled))
-        } else {
-            binding.swipeLeftApp.setTextColor(requireContext().getColorFromAttr(R.attr.primaryColorTrans50))
-            requireContext().showToast(getString(R.string.swipe_left_app_disabled))
-        }
-    }
 
-    private fun toggleSwipeRight() {
-        prefs.swipeRightEnabled = !prefs.swipeRightEnabled
-        if (prefs.swipeRightEnabled) {
-            binding.swipeRightApp.setTextColor(requireContext().getColorFromAttr(R.attr.primaryColor))
-            requireContext().showToast(getString(R.string.swipe_right_app_enabled))
-        } else {
-            binding.swipeRightApp.setTextColor(requireContext().getColorFromAttr(R.attr.primaryColorTrans50))
-            requireContext().showToast(getString(R.string.swipe_right_app_disabled))
-        }
-    }
 
     private fun toggleStatusBar() {
         prefs.showStatusBar = !prefs.showStatusBar
@@ -479,15 +435,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             activity.recreate()
     }
 
-    private fun toggleKeyboardText() {
-        if (prefs.autoShowKeyboard && prefs.keyboardMessageShown.not()) {
-            viewModel.showDialog.postValue(Constants.Dialog.KEYBOARD)
-            prefs.keyboardMessageShown = true
-        } else {
-            prefs.autoShowKeyboard = !prefs.autoShowKeyboard
-            populateKeyboardText()
-        }
-    }
 
     private fun updateTheme(appTheme: Int) {
         if (AppCompatDelegate.getDefaultNightMode() == appTheme) return
@@ -546,10 +493,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         } else binding.screenTimeLayout.visibility = View.GONE
     }
 
-    private fun populateKeyboardText() {
-        if (prefs.autoShowKeyboard) binding.autoShowKeyboard.text = getString(R.string.on)
-        else binding.autoShowKeyboard.text = getString(R.string.off)
-    }
 
     private fun populateWallpaperText() {
         if (prefs.dailyWallpaper) binding.dailyWallpaper.text = getString(R.string.on)
@@ -605,14 +548,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         }
     }
 
-    private fun populateSwipeApps() {
-        binding.swipeLeftApp.text = prefs.appNameSwipeLeft
-        binding.swipeRightApp.text = prefs.appNameSwipeRight
-        if (!prefs.swipeLeftEnabled)
-            binding.swipeLeftApp.setTextColor(requireContext().getColorFromAttr(R.attr.primaryColorTrans50))
-        if (!prefs.swipeRightEnabled)
-            binding.swipeRightApp.setTextColor(requireContext().getColorFromAttr(R.attr.primaryColorTrans50))
-    }
 
 //    private fun populateDigitalWellbeing() {
 //        binding.digitalWellbeing.isVisible = requireContext().isPackageInstalled(Constants.DIGITAL_WELLBEING_PACKAGE_NAME).not()
@@ -620,21 +555,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 //                && prefs.hideDigitalWellbeing.not()
 //    }
 
-    private fun showAppListIfEnabled(flag: Int) {
-        if ((flag == Constants.FLAG_SET_SWIPE_LEFT_APP) and !prefs.swipeLeftEnabled) {
-            requireContext().showToast(getString(R.string.long_press_to_enable))
-            return
-        }
-        if ((flag == Constants.FLAG_SET_SWIPE_RIGHT_APP) and !prefs.swipeRightEnabled) {
-            requireContext().showToast(getString(R.string.long_press_to_enable))
-            return
-        }
-        viewModel.getAppList(true)
-        findNavController().navigate(
-            R.id.action_settingsFragment_to_appListFragment,
-            bundleOf(Constants.Key.FLAG to flag)
-        )
-    }
 
     private fun populateActionHints() {
         if (viewModel.isOlauncherDefault.value != true) return

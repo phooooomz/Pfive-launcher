@@ -44,7 +44,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val firstOpen = MutableLiveData<Boolean>()
     val refreshHome = MutableLiveData<Boolean>()
     val toggleDateTime = MutableLiveData<Unit>()
-    val updateSwipeApps = MutableLiveData<Any>()
     val appList = MutableLiveData<List<AppModel>?>()
     val hiddenApps = MutableLiveData<List<AppModel>?>()
     val isOlauncherDefault = MutableLiveData<Boolean>()
@@ -93,8 +92,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             Constants.FLAG_SET_HOME_APP_7 -> saveHomeApp(appModel, 7)
             Constants.FLAG_SET_HOME_APP_8 -> saveHomeApp(appModel, 8)
 
-            Constants.FLAG_SET_SWIPE_LEFT_APP -> saveSwipeApp(appModel, isLeft = true)
-            Constants.FLAG_SET_SWIPE_RIGHT_APP -> saveSwipeApp(appModel, isLeft = false)
             Constants.FLAG_SET_CLOCK_APP -> saveClockApp(appModel)
             Constants.FLAG_SET_CALENDAR_APP -> saveCalendarApp(appModel)
             Constants.FLAG_SET_SCREEN_TIME_APP -> saveScreenTimeApp(appModel)
@@ -278,47 +275,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         refreshHome(false)
     }
 
-    private fun saveSwipeApp(appModel: AppModel, isLeft: Boolean) {
-        when (appModel) {
-            is AppModel.PrivateSpaceHeader -> return
-            is AppModel.App -> {
-                if (isLeft) {
-                    prefs.appNameSwipeLeft = appModel.appLabel
-                    prefs.appPackageSwipeLeft = appModel.appPackage
-                    prefs.appUserSwipeLeft = appModel.user.toString()
-                    prefs.appActivityClassNameSwipeLeft = appModel.activityClassName
-                    prefs.isShortcutSwipeLeft = false
-                    prefs.shortcutIdSwipeLeft = ""
-                } else {
-                    prefs.appNameSwipeRight = appModel.appLabel
-                    prefs.appPackageSwipeRight = appModel.appPackage
-                    prefs.appUserSwipeRight = appModel.user.toString()
-                    prefs.appActivityClassNameRight = appModel.activityClassName
-                    prefs.isShortcutSwipeRight = false
-                    prefs.shortcutIdSwipeRight = ""
-                }
-            }
-
-            is AppModel.PinnedShortcut -> {
-                if (isLeft) {
-                    prefs.appNameSwipeLeft = appModel.appLabel
-                    prefs.appPackageSwipeLeft = appModel.appPackage
-                    prefs.appUserSwipeLeft = appModel.user.toString()
-                    prefs.appActivityClassNameSwipeLeft = null
-                    prefs.isShortcutSwipeLeft = true
-                    prefs.shortcutIdSwipeLeft = appModel.shortcutId
-                } else {
-                    prefs.appNameSwipeRight = appModel.appLabel
-                    prefs.appPackageSwipeRight = appModel.appPackage
-                    prefs.appUserSwipeRight = appModel.user.toString()
-                    prefs.appActivityClassNameRight = null
-                    prefs.isShortcutSwipeRight = true
-                    prefs.shortcutIdSwipeRight = appModel.shortcutId
-                }
-            }
-        }
-        updateSwipeApps()
-    }
 
     private fun saveClockApp(appModel: AppModel) {
         if (appModel is AppModel.App) {
@@ -356,9 +312,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         toggleDateTime.postValue(Unit)
     }
 
-    private fun updateSwipeApps() {
-        updateSwipeApps.postValue(Unit)
-    }
 
     private fun launchApp(packageName: String, activityClassName: String?, userHandle: UserHandle) {
         val launcher = appContext.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps

@@ -350,7 +350,7 @@ class AppDrawerFragment : BaseFragment() {
                             binding.search.hideKeyboard()
                         else if (!recyclerView.canScrollVertically(-1))
                             if (!onTop && isRemoving.not())
-                                binding.search.showKeyboard(prefs.autoShowKeyboard)
+                                binding.search.showKeyboard()
                     }
                 }
             }
@@ -366,7 +366,7 @@ class AppDrawerFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
         cachedIsCjkKeyboard = null
-        binding.search.showKeyboard(prefs.autoShowKeyboard)
+        binding.search.showKeyboard()
     }
 
     override fun onStop() {

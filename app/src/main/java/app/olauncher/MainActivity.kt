@@ -256,9 +256,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                Constants.Dialog.KEYBOARD -> {
-                    showMessage(R.string.app_name, R.string.keyboard_message, R.string.okay) {
-                    }
                 }
 
                 Constants.Dialog.DIGITAL_WELLBEING -> {
