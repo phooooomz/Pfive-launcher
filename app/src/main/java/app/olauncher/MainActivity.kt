@@ -256,8 +256,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                }
-
                 Constants.Dialog.DIGITAL_WELLBEING -> {
                     showMessage(R.string.screen_time, R.string.app_usage_message, R.string.permission) {
                         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
