@@ -83,6 +83,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
     override fun onResume() {
         super.onResume()
+        updatePanel()
         populateHomeScreen(false)
         viewModel.isOlauncherDefault()
         if (prefs.showStatusBar) showStatusBar()
@@ -728,6 +729,16 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                 }
             })
         }
+    }
+
+    /** Refreshes the top panel's clock and battery; called each time the home screen resumes. */
+    private fun updatePanel() {
+        if (_binding == null) return
+        binding.panelClock.text = java.text.SimpleDateFormat("HH:mm", java.util.Locale.getDefault())
+            .format(java.util.Date())
+        val level = (requireContext().getSystemService(Context.BATTERY_SERVICE) as BatteryManager)
+            .getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+        binding.panelBattery.text = if (level > 0) "$level%" else ""
     }
 
     private fun textOnClick(view: View) = onClick(view)
