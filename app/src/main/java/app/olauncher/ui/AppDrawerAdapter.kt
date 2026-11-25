@@ -20,6 +20,7 @@ import app.olauncher.data.AppModel
 import app.olauncher.data.Constants
 import app.olauncher.databinding.AdapterAppDrawerBinding
 import app.olauncher.databinding.AdapterPrivateSpaceHeaderBinding
+import app.olauncher.helper.getAppIconDrawable
 import app.olauncher.helper.hideKeyboard
 import app.olauncher.helper.isSystemApp
 import app.olauncher.helper.showKeyboard
@@ -237,6 +238,20 @@ class AppDrawerAdapter(
             appHideLayout.visibility = View.GONE
             renameLayout.visibility = View.GONE
             appTitle.visibility = View.VISIBLE
+
+            // Minimal style: show the app icon beside its name
+            val density = root.resources.displayMetrics.density
+            val icon = if (appModel.appPackage.isNotEmpty())
+                getAppIconDrawable(root.context, appModel.appPackage, appModel.user, (36 * density).toInt())
+            else null
+            appIcon.setImageDrawable(icon)
+            appIcon.isVisible = icon != null
+            appTitle.setPaddingRelative(
+                ((if (icon != null) 76 else 24) * density).toInt(),
+                appTitle.paddingTop,
+                (24 * density).toInt(),
+                appTitle.paddingBottom,
+            )
 
             // Show indicators in title based on app type and state
             appTitle.text = buildString {

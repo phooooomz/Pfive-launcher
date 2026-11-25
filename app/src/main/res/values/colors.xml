@@ -28,4 +28,7 @@
     <color name="blackInverseTrans80">#CCFFFFFF</color>
     <color name="blackInverseTrans90">#E6FFFFFF</color>
 
+    <!--Dark gray (minimal dark theme background)-->
+    <color name="darkGray">#1E1E1E</color>
+
 </resources>

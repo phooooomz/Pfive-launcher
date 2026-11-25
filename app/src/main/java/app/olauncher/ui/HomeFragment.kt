@@ -33,6 +33,7 @@ import app.olauncher.databinding.FragmentHomeBinding
 import app.olauncher.helper.appUsagePermissionGranted
 import app.olauncher.helper.dpToPx
 import app.olauncher.helper.expandNotificationDrawer
+import app.olauncher.helper.getAppIconDrawable
 import app.olauncher.helper.getChangedAppTheme
 import app.olauncher.helper.getUserHandleFromString
 import app.olauncher.helper.isPackageInstalled
@@ -379,6 +380,28 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         }
     }
 
+    /**
+     * Shows the app icon only (no label) on the home screen. Falls back to the text label if the icon can't be loaded.
+     */
+    private fun showHomeIcon(
+        textView: TextView,
+        appName: String,
+        packageName: String,
+        userHandle: android.os.UserHandle,
+    ) {
+        val sizePx = (48 * resources.displayMetrics.density).toInt()
+        val icon = getAppIconDrawable(requireContext(), packageName, userHandle, sizePx)
+        if (icon != null) {
+            textView.text = ""
+            textView.hint = null
+            textView.contentDescription = appName
+            textView.setCompoundDrawablesRelative(icon, null, null, null)
+        } else {
+            textView.setCompoundDrawablesRelative(null, null, null, null)
+            textView.text = appName
+        }
+    }
+
     private fun setHomeAppText(
         textView: TextView,
         appName: String,
@@ -389,6 +412,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
     ): Boolean {
         // Get user handle for the app/shortcut
         val userHandle = getUserHandleFromString(requireContext(), userString)
+        // Icon mode: text labels are hidden on the home screen
 
         // If it's a shortcut, verify it still exists
         if (isShortcut) {
@@ -404,7 +428,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
                 val shortcuts = launcherApps.getShortcuts(query, userHandle)
                 // Check if our shortcut still exists
                 if (shortcuts?.any { it.id == shortcutId } == true) {
-                    textView.text = appName
+                    showHomeIcon(textView, appName, packageName, userHandle)
                     return true
                 }
                 textView.text = ""
@@ -418,7 +442,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
         // Regular app check
         if (isPackageInstalled(requireContext(), packageName, userString)) {
-            textView.text = appName
+            showHomeIcon(textView, appName, packageName, userHandle)
             return true
         }
         textView.text = ""

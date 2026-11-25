@@ -289,11 +289,11 @@ fun getDefaultLauncherPackage(context: Context): String {
 
 fun setPlainWallpaperByTheme(context: Context, appTheme: Int) {
     when (appTheme) {
-        AppCompatDelegate.MODE_NIGHT_YES -> setPlainWallpaper(context, android.R.color.black)
+        AppCompatDelegate.MODE_NIGHT_YES -> setPlainWallpaper(context, app.olauncher.R.color.darkGray)
         AppCompatDelegate.MODE_NIGHT_NO -> setPlainWallpaper(context, android.R.color.white)
         else -> {
             if (context.isDarkThemeOn())
-                setPlainWallpaper(context, android.R.color.black)
+                setPlainWallpaper(context, app.olauncher.R.color.darkGray)
             else setPlainWallpaper(context, android.R.color.white)
         }
     }
@@ -312,6 +312,26 @@ fun setPlainWallpaper(context: Context, color: Int) {
         bitmap.recycle()
     } catch (e: Exception) {
         e.printStackTrace()
+    }
+}
+
+/**
+ * Returns the launcher icon of an app for the given user, scaled to [sizePx], or null if it cannot be loaded.
+ */
+fun getAppIconDrawable(
+    context: Context,
+    packageName: String,
+    user: android.os.UserHandle,
+    sizePx: Int,
+): android.graphics.drawable.Drawable? {
+    return try {
+        val launcher = context.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
+        val icon = launcher.getActivityList(packageName, user).firstOrNull()
+            ?.getIcon(context.resources.displayMetrics.densityDpi)
+            ?: context.packageManager.getApplicationIcon(packageName)
+        icon.apply { setBounds(0, 0, sizePx, sizePx) }
+    } catch (e: Exception) {
+        null
     }
 }
 
