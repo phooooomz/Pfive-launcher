@@ -124,10 +124,6 @@
     <string name="delete">Uninstall</string>
     <string name="text_size">Text size</string>
     <string name="bold_font">Bold font</string>
-    <string name="custom_font">Custom font (tap to pick, long-press to reset)</string>
-    <string name="font_default">Default</string>
-    <string name="font_custom">Custom</string>
-    <string name="font_invalid">This file is not a valid font</string>
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
     <string name="please_turn_on_double_tap_to_unlock">Please turn on double tap to lock</string>

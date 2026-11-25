@@ -117,7 +117,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.appThemeText -> showAppThemeMenu(view, showSystem = false)
             R.id.textSizeValue -> showTextSizeDialog()
             R.id.boldFont -> toggleBoldFont()
-            R.id.customFont -> pickCustomFont()
 
             R.id.swipeLeftApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_LEFT_APP)
             R.id.swipeRightApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_RIGHT_APP)
@@ -183,12 +182,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.appThemeText.setOnClickListener(this)
         binding.textSizeValue.setOnClickListener(this)
         binding.boldFont.setOnClickListener(this)
-        binding.customFont.setOnClickListener(this)
-        binding.customFont.setOnLongClickListener {
-            resetCustomFont()
-            true
-        }
-        populateCustomFont()
 
         binding.share.setOnClickListener(this)
         binding.rate.setOnClickListener(this)
@@ -544,51 +537,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
     private fun populateTextSize() {
         binding.textSizeValue.text = formatScale(prefs.textSizeScale)
-    }
-
-    private val requestCodePickFont = 4201
-
-    private fun pickCustomFont() {
-        val intent = android.content.Intent(android.content.Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(android.content.Intent.CATEGORY_OPENABLE)
-            type = "*/*"
-        }
-        startActivityForResult(intent, requestCodePickFont)
-    }
-
-    @Suppress("DEPRECATION")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: android.content.Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode != requestCodePickFont || resultCode != android.app.Activity.RESULT_OK) return
-        val uri = data?.data ?: return
-        val context = requireContext()
-        val target = app.olauncher.helper.customFontFile(context)
-        val saved = try {
-            context.contentResolver.openInputStream(uri)?.use { input ->
-                target.outputStream().use { input.copyTo(it) }
-            }
-            // Make sure the file is a usable font before keeping it
-            android.graphics.Typeface.createFromFile(target)
-            true
-        } catch (e: Exception) {
-            target.delete()
-            false
-        }
-        if (saved) {
-            requireActivity().recreate()
-        } else {
-            android.widget.Toast.makeText(context, R.string.font_invalid, android.widget.Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun resetCustomFont() {
-        app.olauncher.helper.customFontFile(requireContext()).delete()
-        requireActivity().recreate()
-    }
-
-    private fun populateCustomFont() {
-        val hasCustom = app.olauncher.helper.customFontFile(requireContext()).exists()
-        binding.customFont.text = getString(if (hasCustom) R.string.font_custom else R.string.font_default)
     }
 
     private fun toggleBoldFont() {

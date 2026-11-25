@@ -20,7 +20,6 @@ import app.olauncher.data.AppModel
 import app.olauncher.data.Constants
 import app.olauncher.databinding.AdapterAppDrawerBinding
 import app.olauncher.databinding.AdapterPrivateSpaceHeaderBinding
-import app.olauncher.helper.applyCustomFont
 import app.olauncher.helper.getAppIconDrawable
 import app.olauncher.helper.hideKeyboard
 import app.olauncher.helper.isSystemApp
@@ -253,7 +252,6 @@ class AppDrawerAdapter(
                 (24 * density).toInt(),
                 appTitle.paddingBottom,
             )
-            applyCustomFont(root, root.context)
 
             // Show indicators in title based on app type and state
             appTitle.text = buildString {
